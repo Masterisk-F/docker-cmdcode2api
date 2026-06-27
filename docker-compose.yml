@@ -20,7 +20,4 @@ services:
       - CC_BASE_URL=${CC_BASE_URL:-https://api.commandcode.ai}
       - EXCLUDE_MODELS=${EXCLUDE_MODELS:-gpt-,claude-,gemini-}
     volumes:
-      - cmdcode2api-data:/data
-
-volumes:
-  cmdcode2api-data:
+      - ./data:/data
