@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  cmdcode2api:
+    build: .
+    container_name: cmdcode2api
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    environment:
+      # Required: your Command Code API key (get from https://commandcode.ai/studio/)
+      - CC_API_KEY=${CC_API_KEY:-}
+
+      # Optional: local API key for clients (auto-generated if omitted)
+      - API_KEY=${API_KEY:-}
+
+      # Optional overrides
+      - HOST=${HOST:-0.0.0.0}
+      - PORT=${PORT:-11434}
+      - CC_BASE_URL=${CC_BASE_URL:-https://api.commandcode.ai}
+      - EXCLUDE_MODELS=${EXCLUDE_MODELS:-gpt-,claude-,gemini-}
+    volumes:
+      - cmdcode2api-data:/data
+
+volumes:
+  cmdcode2api-data:
